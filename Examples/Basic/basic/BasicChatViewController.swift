@@ -56,7 +56,13 @@ class BasicChatViewController: UIViewController {
   
   
   // Test the URLSessionTransport
-  let socket = Socket(endpoint)
+//  let socket = Socket(endpoint)
+
+
+
+  let socket = Socket(endPoint: endpoint) { URLSessionTransport(url: $0) { (task) -> URLSessionWebSocketTask in
+    return task
+  } }
   
   // Test the StarscreamTransport
 //  let socket = Socket(endPoint: endpoint, transport: { url in return StarscreamTransport(url: url) })
